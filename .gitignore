@@ -1,0 +1,11 @@
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.production
+sql_app.db
+*.db
+.DS_Store
+dist/

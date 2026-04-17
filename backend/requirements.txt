@@ -1,0 +1,11 @@
+fastapi[all]
+SQLAlchemy
+pymysql
+psycopg2-binary
+passlib
+bcrypt==4.0.1
+python-jose[cryptography]
+pydantic
+pydantic-settings
+python-multipart
+python-dotenv
