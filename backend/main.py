@@ -40,3 +40,36 @@ app.include_router(wishlist.router)
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the E-Commerce API"}
+
+@app.get("/health")
+def health_check():
+    """
+    DB health check endpoint.
+    Visit: http://localhost:8000/health  (local)
+           https://your-app.onrender.com/health  (production)
+    """
+    from .database import SessionLocal
+    from . import models
+    try:
+        db = SessionLocal()
+        users     = db.query(models.User).count()
+        products  = db.query(models.Product).count()
+        orders    = db.query(models.Order).count()
+        wishlist  = db.query(models.WishlistItem).count()
+        db.close()
+        return {
+            "status": "✅ healthy",
+            "database": "connected",
+            "counts": {
+                "users": users,
+                "products": products,
+                "orders": orders,
+                "wishlist_items": wishlist
+            }
+        }
+    except Exception as e:
+        return {
+            "status": "❌ unhealthy",
+            "database": "disconnected",
+            "error": str(e)
+        }
