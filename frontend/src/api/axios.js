@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || 'https://e-commerce-websites-hlrg.onrender.com',
 });
 
 // Request interceptor to add the auth token header to requests
